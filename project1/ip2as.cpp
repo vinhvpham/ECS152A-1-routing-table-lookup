@@ -6,65 +6,23 @@
 
 using namespace std;
 
+
+//convert an integer to a binary string using repeated subtraction algorithm
 string decToBin (int num)
 {
-    string out;
-    if (num >= 128)
+    string out = "";
+    for (int i=7; i>=0; i--)
     {
-        num = num - 128;
-        out = "1";
+        if (num >= (1<<i))
+        {
+            num = num - (1<<i);
+            out += "1";
+        }
+        else
+        {
+            out += "0";
+        }
     }
-    else
-        out = "0";
-    if (num >= 64)
-    {
-        num -= 64;
-        out += "1";
-    }
-    else
-        out += "0";
-    if (num >= 32)
-    {
-        num -= 32;
-        out += "1";
-    }
-    else
-        out += "0";
-    if (num >= 16)
-    {
-        num -= 16;
-        out += "1";
-    }
-    else
-        out += "0";
-    if (num >= 8)
-    {
-        num -= 8;
-        out += "1";
-    }
-    else
-        out += "0";
-    if (num >= 4)
-    {
-        num -= 4;
-        out += "1";
-    }
-    else
-        out += "0";
-    if (num >= 2)
-    {
-        num -= 2;
-        out += "1";
-    }
-    else
-        out += "0";
-    if (num >= 1)
-    {
-        num -= 1;
-        out += "1";
-    }
-    else
-        out += "0";
     return out;
 }
 
@@ -108,7 +66,9 @@ string mapAS (string ip1, string ip2, string ip3, string ip4, ifstream& ASlist)
                         }
                     }
                     else
+                    {
                         break;
+                    }
                 }
             }
 
@@ -116,34 +76,5 @@ string mapAS (string ip1, string ip2, string ip3, string ip4, ifstream& ASlist)
         asIpBin = decToBin(atoi(asIp1.data())) + decToBin(atoi(asIp2.data())) +
         decToBin(atoi(asIp3.data())) + decToBin(atoi(asIp4.data())) ;
     }
-    cout << "Match: " << out << endl;
     return out;
-}
-
-int main(int argc, char* argv[])
-{
-    ifstream inFile;
-    ifstream dbFile;
-    ofstream outFile;
-    string first;
-    string second;
-    string third;
-    string fourth;
-    inFile.open(argv[2]);
-    dbFile.open(argv[1]);
-    outFile.open("output.txt");
-    string test = "abc";
-    string dataLine;
-    while (getline(inFile, first, '.' ) && getline(inFile, second, '.' )
-           && getline(inFile, third, '.' ) && getline(inFile, fourth, '\n' ))
-    {
-        cout << "Searching for " << first << "." << second  << "." << third << "." << fourth << endl;
-        dataLine = mapAS(first, second, third, fourth, dbFile);
-        outFile << dataLine;
-        dbFile.clear();
-        dbFile.seekg(0, ios::beg);
-    }
-    outFile.close();
-    cout << "Saved to output.txt" << endl;
-    return 0;
 }
