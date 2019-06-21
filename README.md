@@ -1,5 +1,9 @@
+
 # ECS152A - Routing Table Lookup
-## Spring 2018
+Vinh Pham  
+UC Davis  
+ECS152A - Computer Networks  
+Spring 2018
 
 -Program was written in C++, tested to be working on Windows 10 operating system, compiled with GNU GCC Compiler. Also tested to successfully compile and run on linux but the output file has different formatting because of differences in newLine characters between the two platforms. 
 for example, the output in Windows may look like:
