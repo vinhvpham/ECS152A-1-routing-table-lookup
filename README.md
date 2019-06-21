@@ -1,8 +1,21 @@
-ip2as.cpp
-project1, ecs152a
-Vinh Pham
+# ECS152A - Routing Table Lookup
+## Spring 2018
 
--Program was written in C++, tested to be working on Windows 10 operating system, compiled with GNU GCC Compiler. Also tested to successfully compile and run on linux but the output file has different spacing.
+-Program was written in C++, tested to be working on Windows 10 operating system, compiled with GNU GCC Compiler. Also tested to successfully compile and run on linux but the output file has different formatting because of differences in newLine characters between the two platforms. 
+for example, the output in Windows may look like:
+
+   ```
+   208.30.6.0/24 13613 208.30.6.88
+   208.0.0.0/11  1239 208.30.172.70
+   ```
+
+While in Unix, would look like:
+```
+208.30.6.0/24 13613
+ 208.30.6.88
+208.0.0.0/11 1239
+ 208.30.172.70
+```
 
 -Finds the longest prefix match of the IP given a database text file and input file, and outputs to "output.txt".
 
@@ -37,10 +50,10 @@ Steps:
    file>. You can list one IP address per line. 
    
    For example, look at IPlist.txt file, which contains the following:
-   
-   169.237.33.90
+   ```
+   208.30.6.88
    208.30.172.70
-
+   ```
 2. The \<DB file> has data about which address block belongs to
    a particular AS (look at DB_091803.txt file, for example).
    The \<DB file> is constructed based on IRR database and
@@ -49,12 +62,13 @@ Steps:
 3. Run ip2as and specify the <DB file> and <IP file>
 
    For example, if you run 
+   ```
    >> ip2as DB_091803.txt IPlist.txt
-
+   ```
    the output should look like the following:
-   
-   169.237.0.0/16  1852 169.237.33.90
+   ```
+   208.30.6.0/24 13613 208.30.6.88
    
    208.0.0.0/11  1239 208.30.172.70
-
+   ```
    
